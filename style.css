@@ -1,0 +1,51 @@
+#uv-index {
+    padding: 4px;
+    border-radius: 4px;
+}
+ul{
+    list-style-type: none;
+}
+
+#grid-container {
+    display: grid;
+    grid-template: auto auto / auto auto auto;
+    padding-left: 20px;
+}
+
+.city-search {
+    grid-area: 1 / 1 / span 2 / span 1;
+}
+
+.todays-weather-info {
+    grid-area: 1 / 2 / span 1 / span 2;
+}
+
+.five-day-forecast {
+    grid-area: 2 / 2 / span 1 / span 2;
+    margin-top: 30px;
+}
+
+.five-day-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.day-card {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* h1 {
+    padding-left: 20px;
+    background-color: thistle;
+} */
+
+footer {
+    background-color: thistle;
+    padding-left: 20px;
+}
+
+.jumbotron {
+    background-color: thistle;
+}
