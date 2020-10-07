@@ -20,7 +20,7 @@ $(document).ready(function () {
                 console.log(event.target.textContent);
 
                 //assign variable to current weather api query url, with user input and apiKey as variable inputs
-                var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${event.target.textContent}&appid=${apiKey}`;
+                var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${event.target.textContent}&appid=${apiKey}`;
 
                 //make ajax call to api via queryUrl and GET method
                 $.ajax({
@@ -72,7 +72,7 @@ $(document).ready(function () {
         console.log(textInput);
 
         //assign variable to current weather api query url, with user input and apiKey as variable inputs
-        var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${textInput}&appid=${apiKey}`;
+        var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${textInput}&appid=${apiKey}`;
 
         //make ajax call to api via queryUrl and GET method
         $.ajax({
@@ -186,7 +186,7 @@ $(document).ready(function () {
 
             //add response data icon at index position 0 to today's weather div
             var icon = todaysWeather.weather[0].icon;
-            $("#weather-icon").attr("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+            $("#weather-icon").attr("src", `https://openweathermap.org/img/wn/${icon}@2x.png`);
 
             //populate 5-day weather divs with response data
 
@@ -211,7 +211,7 @@ $(document).ready(function () {
             var iconOne = todaysWeather.weather[0].icon;
 
             //select icon element and set src attribute to icon url            
-            $("#icon-one").attr("src", `http://openweathermap.org/img/wn/${iconOne}@2x.png`);
+            $("#icon-one").attr("src", `https://openweathermap.org/img/wn/${iconOne}@2x.png`);
 
             //assign variable to moment.js date data
             var dateOne = moment().add(1, "d").format('L');
@@ -228,7 +228,7 @@ $(document).ready(function () {
             $("#humidity-two").html(`Humidity: ${humidityTwo}%`);
 
             var iconTwo = todaysWeather.weather[0].icon;
-            $("#icon-two").attr("src", `http://openweathermap.org/img/wn/${iconTwo}@2x.png`);
+            $("#icon-two").attr("src", `https://openweathermap.org/img/wn/${iconTwo}@2x.png`);
 
             var dateTwo = moment().add(2, "d").format('L');
             $("#date-two").html(dateTwo);
@@ -242,7 +242,7 @@ $(document).ready(function () {
             $("#humidity-three").html(`Humidity: ${humidityThree}%`);
 
             var iconThree = todaysWeather.weather[0].icon;
-            $("#icon-three").attr("src", `http://openweathermap.org/img/wn/${iconThree}@2x.png`);
+            $("#icon-three").attr("src", `https://openweathermap.org/img/wn/${iconThree}@2x.png`);
 
             var dateThree = moment().add(3, "d").format('L');
             $("#date-three").html(dateThree);
@@ -256,7 +256,7 @@ $(document).ready(function () {
             $("#humidity-four").html(`Humidity: ${humidityFour}%`);
 
             var iconFour = todaysWeather.weather[0].icon;
-            $("#icon-four").attr("src", `http://openweathermap.org/img/wn/${iconFour}@2x.png`);
+            $("#icon-four").attr("src", `https://openweathermap.org/img/wn/${iconFour}@2x.png`);
 
             var dateFour = moment().add(4, "d").format('L');
             $("#date-four").html(dateFour);
@@ -270,7 +270,7 @@ $(document).ready(function () {
             $("#humidity-five").html(`Humidity: ${humidityFive}%`);
 
             var iconFive = todaysWeather.weather[0].icon;
-            $("#icon-five").attr("src", `http://openweathermap.org/img/wn/${iconFive}@2x.png`);
+            $("#icon-five").attr("src", `https://openweathermap.org/img/wn/${iconFive}@2x.png`);
 
             var dateFive = moment().add(5, "d").format('L');
             $("#date-five").html(dateFive);
