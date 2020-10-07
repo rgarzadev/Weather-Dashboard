@@ -12,10 +12,11 @@ The goal of this project was to create a weather dashboard that allows users to 
 ### Usage Instructions: <br>
 
 * Enter city name into search field.
-* Click search button to retrieve current and 5-day forecast for city.
+* Click search button or press Enter to retrieve current and 5-day forecast for city.
 * Forecast data is displayed and saved to list below search field.
 * Click previously searched city button to recall and display data again.
 * Previously searched city buttons will persist when closing or refreshing browser.
+* Click "Clear List" button to clear list of previously searched cities.
 
 ### Installation Instructions:
 

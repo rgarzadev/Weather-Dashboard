@@ -1,23 +1,22 @@
 //jquery document ready function
-$(document).ready(function(){
+$(document).ready(function () {
 
     //assign apiKey as variable
     var apiKey = "6c0f5801e1248c7504486375495c1428";
 
     //populate list of previously searched cities
-    function populateList(){
-        
+    function populateList() {
+        $("#search-list").empty();
         //assign variable to JSON parsed local storage data
         var list = JSON.parse(localStorage.getItem("weatherList"));
 
         //if list data exists, for each item in array, append item to 
-        if (list){
-            $("#search-list").empty();
-            list.forEach(function(location){
-                $("#search-list").append(`<li class="city"><button class="btn btn-outline-secondary">${location}</button></li>`);
-            });   
+        if (list) {
+            list.forEach(function (location) {
+                $("#search-list").prepend(`<li class="city"><button class="btn btn-outline-secondary">${location}</button></li>`);
+            });
 
-            $(".city").click(function(event) {
+            $(".city").click(function (event) {
                 console.log(event.target.textContent);
 
                 //assign variable to current weather api query url, with user input and apiKey as variable inputs
@@ -27,7 +26,7 @@ $(document).ready(function(){
                 $.ajax({
                     url: queryURL,
                     method: "GET"
-                }).then(function(response) {
+                }).then(function (response) {
 
                     //assign variable to city name response data
                     var name = response.name;
@@ -46,22 +45,32 @@ $(document).ready(function(){
 
                     //call getSevenDayWeather function with lat and lon variables as inputs
                     getSevenDayWeather(lat, lon);
-            
+
                 });
-            })        
+            })
         }
     }
 
 
     //create search button click function
-    $("#search-button").click(function(event){
+    $("#search-button").click(searchByCity);
+    $("#search-field").on("keypress", function (e) {
+        if (e.key === "Enter") {
+            searchByCity()
+        }
+    })
+    $("#clear-button").click(function () {
+        localStorage.removeItem("weatherList")
+        populateList()
+    })
 
+    function searchByCity() {
         //assign variable to value of user input
         var textInput = $("#search-field").val();
 
         //console.log value of user input element
         console.log(textInput);
-        
+
         //assign variable to current weather api query url, with user input and apiKey as variable inputs
         var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${textInput}&appid=${apiKey}`;
 
@@ -69,7 +78,7 @@ $(document).ready(function(){
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
 
             //assign variable to city name response data
             var name = response.name;
@@ -89,13 +98,13 @@ $(document).ready(function(){
             //call getSevenDayWeather function with lat and lon variables as inputs
             getSevenDayWeather(lat, lon);
 
-        //save seached city name data to local storage history
+            //save seached city name data to local storage history
 
             //assign variable to JSON parsed local storage data
             var previousCities = JSON.parse(localStorage.getItem("weatherList"));
 
             //if data items in local storage, add the city name response data to the array
-            if (previousCities){
+            if (previousCities) {
                 previousCities.push(name);
             }
 
@@ -107,28 +116,29 @@ $(document).ready(function(){
             //stringify the array and set it to local storage as key / value pair
             localStorage.setItem("weatherList", JSON.stringify(previousCities));
 
-        //append name response data to the search list div
+            //append name response data to the search list div
             populateList();
-    
+
         });
-    });
-        
+
+    }
+
     //create seven day weather for latitude longitude location (only using 5 days)
-    function getSevenDayWeather(lat, lon){
+    function getSevenDayWeather(lat, lon) {
 
         //assign variable to api query url with lat and lon as variable inputs
         var queryURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=[current,minutely,hourly,alerts]&appid=${apiKey}&units=imperial`;
-        
+
         //make ajax call to api via queryUrl and GET method
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
 
             //console.log all response data in console
             console.log(response);
 
-//populate today's weather p tags with response data
+            //populate today's weather p tags with response data
 
             //assign variable to today's weather response data
             var todaysWeather = response.daily[0];
@@ -157,30 +167,30 @@ $(document).ready(function(){
             //select uv index element and set html content to string and variable value
             $("#uv-index").html(`UV Index: ${uvIndex}`);
 
-        //set today's uv index element background color based on index value
+            //set today's uv index element background color based on index value
 
             //if uv index response data greater than 5, set css background-color property to red
-            if (uvIndex > 5){
+            if (uvIndex > 5) {
                 $("#uv-index").css("background-color", "red");
             }
 
             //else if uv index response data greater than 2, set css background-color property to yellow
-            else if (uvIndex > 2){
-                $("#uv-index").css("background-color", "yellow");   
+            else if (uvIndex > 2) {
+                $("#uv-index").css("background-color", "yellow");
             }
 
             //else set css background-color property to green
             else {
-                $("#uv-index").css("background-color", "green");   
+                $("#uv-index").css("background-color", "green");
             }
 
             //add response data icon at index position 0 to today's weather div
             var icon = todaysWeather.weather[0].icon;
             $("#weather-icon").attr("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
 
-//populate 5-day weather divs with response data
+            //populate 5-day weather divs with response data
 
-        //populate day one weather div
+            //populate day one weather div
 
             //assign variable to array position 1 response data
             var dayOneWeather = response.daily[1];
@@ -190,7 +200,7 @@ $(document).ready(function(){
 
             //select temp element and set html content to string and variable value
             $("#temp-one").html(`Temperature: ${tempOne}°F`);
-            
+
             //assign variable to array position 1 humidity data
             var humidityOne = dayOneWeather.humidity;
 
@@ -209,7 +219,7 @@ $(document).ready(function(){
             //select date element and set html content to moment.js date data
             $("#date-one").html(dateOne);
 
-        //populate day two weather
+            //populate day two weather
             var dayTwoWeather = response.daily[2];
             var tempTwo = dayTwoWeather.temp.day;
             $("#temp-two").html(`Temperature: ${tempTwo}°F`);
@@ -223,7 +233,7 @@ $(document).ready(function(){
             var dateTwo = moment().add(2, "d").format('L');
             $("#date-two").html(dateTwo);
 
-        //populate day three weather
+            //populate day three weather
             var dayThreeWeather = response.daily[2];
             var tempThree = dayThreeWeather.temp.day;
             $("#temp-three").html(`Temperature: ${tempThree}°F`);
@@ -237,7 +247,7 @@ $(document).ready(function(){
             var dateThree = moment().add(3, "d").format('L');
             $("#date-three").html(dateThree);
 
-        //populate day four weather
+            //populate day four weather
             var dayFourWeather = response.daily[2];
             var tempFour = dayFourWeather.temp.day;
             $("#temp-four").html(`Temperature: ${tempFour}°F`);
@@ -251,7 +261,7 @@ $(document).ready(function(){
             var dateFour = moment().add(4, "d").format('L');
             $("#date-four").html(dateFour);
 
-        //populate day five weather
+            //populate day five weather
             var dayFiveWeather = response.daily[2];
             var tempFive = dayFiveWeather.temp.day;
             $("#temp-five").html(`Temperature: ${tempFive}°F`);
@@ -266,7 +276,7 @@ $(document).ready(function(){
             $("#date-five").html(dateFive);
 
         });
-    
+
     }
 
     //call populate previously searched cities list function
