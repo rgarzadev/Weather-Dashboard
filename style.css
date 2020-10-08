@@ -62,3 +62,7 @@ footer {
     background-color: thistle;
     padding: 20px 20px 20px 20px;
 }
+
+.jumbotron .container {
+    margin-left: 0px;
+}
