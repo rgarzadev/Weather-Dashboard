@@ -9,6 +9,8 @@ Github Repository: https://github.com/rgarzadev/Weather-Dashboard
 
 The goal of this project was to create a weather dashboard that allows users to search by city name and view current and 5-day forecast information. Previously searched cities are saved and can be recalled by user by clicking buttons in list.
 
+<img src="https://github.com/rgarzadev/Weather-Dashboard/blob/main/weather-dashboard.PNG?raw=true" height="300">
+
 ### Usage Instructions: <br>
 
 * Enter city name into search field.

@@ -191,92 +191,25 @@ $(document).ready(function () {
             $("#weather-icon").attr("src", `https://openweathermap.org/img/wn/${icon}@2x.png`);
 
     //populate 5-day weather divs with response data
+            $("#five-day-cards").empty();
+            for (var i = 1; i < response.daily.length && i <= 5; i++) {
+                var currentDaysWeather = response.daily[i];
+                var newDayCard = $("<div>").attr("class", "day-card");
 
-        //populate day one weather div
+                var currentDaysDate = moment().add(i, "d").format('L');
+                newDayCard.append($("<h4>").html(currentDaysDate));
+                
+                var currentDaysIcon = currentDaysWeather.weather[0].icon;
+                newDayCard.append($("<img>").attr("src", `https://openweathermap.org/img/wn/${currentDaysIcon}@2x.png`));
 
-            //assign variable to array position 1 response data
-            var dayOneWeather = response.daily[1];
+                var currentDaysTemp = currentDaysWeather.temp.day;
+                newDayCard.append($("<p>").html(`Temperature: ${currentDaysTemp}°F`));
 
-            //assign variable to array position 1 temp data
-            var tempOne = dayOneWeather.temp.day;
-
-            //select temp element and set html content to string and variable value
-            $("#temp-one").html(`Temperature: ${tempOne}°F`);
-
-            //assign variable to array position 1 humidity data
-            var humidityOne = dayOneWeather.humidity;
-
-            //select humidity element and set html content to string and variable value
-            $("#humidity-one").html(`Humidity: ${humidityOne}%`);
-
-            //assign variable to array position 1  
-            var iconOne = todaysWeather.weather[0].icon;
-
-            //select icon element and set src attribute to icon url            
-            $("#icon-one").attr("src", `https://openweathermap.org/img/wn/${iconOne}@2x.png`);
-
-            //assign variable to moment.js date data
-            var dateOne = moment().add(1, "d").format('L');
-
-            //select date element and set html content to moment.js date data
-            $("#date-one").html(dateOne);
-
-        //populate day two weather
-            var dayTwoWeather = response.daily[2];
-            var tempTwo = dayTwoWeather.temp.day;
-            $("#temp-two").html(`Temperature: ${tempTwo}°F`);
-
-            var humidityTwo = dayTwoWeather.humidity;
-            $("#humidity-two").html(`Humidity: ${humidityTwo}%`);
-
-            var iconTwo = dayTwoWeather.weather[0].icon;
-            $("#icon-two").attr("src", `https://openweathermap.org/img/wn/${iconTwo}@2x.png`);
-
-            var dateTwo = moment().add(2, "d").format('L');
-            $("#date-two").html(dateTwo);
-
-        //populate day three weather
-            var dayThreeWeather = response.daily[3];
-            var tempThree = dayThreeWeather.temp.day;
-            $("#temp-three").html(`Temperature: ${tempThree}°F`);
-
-            var humidityThree = dayThreeWeather.humidity;
-            $("#humidity-three").html(`Humidity: ${humidityThree}%`);
-
-            var iconThree = dayThreeWeather.weather[0].icon;
-            $("#icon-three").attr("src", `https://openweathermap.org/img/wn/${iconThree}@2x.png`);
-
-            var dateThree = moment().add(3, "d").format('L');
-            $("#date-three").html(dateThree);
-
-        //populate day four weather
-            var dayFourWeather = response.daily[4];
-            var tempFour = dayFourWeather.temp.day;
-            $("#temp-four").html(`Temperature: ${tempFour}°F`);
-
-            var humidityFour = dayFourWeather.humidity;
-            $("#humidity-four").html(`Humidity: ${humidityFour}%`);
-
-            var iconFour = dayFourWeather.weather[0].icon;
-            $("#icon-four").attr("src", `https://openweathermap.org/img/wn/${iconFour}@2x.png`);
-
-            var dateFour = moment().add(4, "d").format('L');
-            $("#date-four").html(dateFour);
-
-        //populate day five weather
-            var dayFiveWeather = response.daily[5];
-            var tempFive = dayFiveWeather.temp.day;
-            $("#temp-five").html(`Temperature: ${tempFive}°F`);
-
-            var humidityFive = dayFiveWeather.humidity;
-            $("#humidity-five").html(`Humidity: ${humidityFive}%`);
-
-            var iconFive = dayFiveWeather.weather[0].icon;
-            $("#icon-five").attr("src", `https://openweathermap.org/img/wn/${iconFive}@2x.png`);
-
-            var dateFive = moment().add(5, "d").format('L');
-            $("#date-five").html(dateFive);
-
+                var currentDaysHumidity = currentDaysWeather.humidity;
+                newDayCard.append($("<p>").html(`Humidity: ${currentDaysHumidity}%`));
+                
+                $("#five-day-cards").append(newDayCard);
+            }
         });
 
     }

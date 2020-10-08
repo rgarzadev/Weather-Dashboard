@@ -18,6 +18,10 @@ ul{
     margin-bottom: 10px;
 }
 
+#search-results {
+    padding-left: 40px;
+}
+
 #uv-index {
     padding: 4px;
     border-radius: 4px;
@@ -42,7 +46,7 @@ ul{
     margin-top: 30px;
 }
 
-.five-day-cards {
+#five-day-cards {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

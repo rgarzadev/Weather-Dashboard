@@ -17,14 +17,14 @@
     <!-- main header -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">Weather Dashboard</h1>
-          <p class="lead">Daily and 5-day weather for any city in the world.</p>
+            <h1 class="display-4">Weather Dashboard</h1>
+            <p class="lead">Daily and 5-day weather for any city in the world.</p>
         </div>
     </div>
     <container id="grid-container">
 
-         <!-- search field and button -->
-        <container class="city-search">           
+        <!-- search field and button -->
+        <container class="city-search">
             <div>
                 <h5>Enter city name to search:</h5>
                 <input type="text" id="search-field" placeholder="city name here">
@@ -38,63 +38,36 @@
             </div>
         </container>
 
-        <!-- today's weather -->
-        <container class="todays-weather-info">
-            <h2 id="title-location"></h2>
-            <img id="weather-icon">
-            <p id="temp"></p>
-            <p id="humidity" ></p>
-            <p id="wind"></p>
-            <span id="uv-index"></span>
-        </container>
-        
-         <!-- 5-day forecast -->
-        <container class="five-day-forecast">           
-            <container class="five-day-cards">
-                <div class="day-card">
-                    <h4 id="date-one"></h4>
-                    <img id="icon-one">
-                    <p id="temp-one"></p>
-                    <p id="humidity-one"></p>
-                </div>
-                <div class="day-card">
-                    <h4 id="date-two"></h4>
-                    <img id="icon-two">
-                    <p id="temp-two"></p>
-                    <p id="humidity-two"></p>
-                </div>
-                <div class="day-card">
-                    <h4 id="date-three"></h4>
-                    <img id="icon-three">
-                    <p id="temp-three"></p>
-                    <p id="humidity-three"></p>
-                </div>
-                <div class="day-card">
-                    <h4 id="date-four"></h4>
-                    <img id="icon-four">
-                    <p id="temp-four"></p>
-                    <p id="humidity-four"></p>
-                </div>
-                <div class="day-card">
-                    <h4 id="date-five"></h4>
-                    <img id="icon-five">
-                    <p id="temp-five"></p>
-                    <p id="humidity-five"></p>
-                </div>
+        <container id="search-results">
+            <!-- today's weather -->
+            <container class="todays-weather-info">
+                <h2 id="title-location"></h2>
+                <img id="weather-icon">
+                <p id="temp"></p>
+                <p id="humidity"></p>
+                <p id="wind"></p>
+                <span id="uv-index"></span>
+            </container>
+
+            <!-- 5-day forecast -->
+            <container class="five-day-forecast">
+                <container id="five-day-cards"></container>
             </container>
         </container>
+
     </container>
     <footer>Weather Dashboard &#169 2020</footer>
 
-<!-- scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="./script.js"></script>
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./script.js"></script>
 </body>
+
 </html>
